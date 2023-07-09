@@ -190,12 +190,11 @@ export const App = () => {
 
     const startNode = grid[startNodeRow][startNodeCol];
     const finishNode = grid[finishNodeRow][finishNodeCol];
-    const mustPassNode = grid[MUST_PASS_ROW][MUST_PASS_COL]
     let visitedNodesInOrder: any = [];
     let nodesInShortestPathOrder: any = [];
     if (selectedAlgorithm === "Dijkstra") {
-      visitedNodesInOrder = dijkstra(newGrid, startNode, mustPassNode);
-      nodesInShortestPathOrder = getNodesInShortestPathOrder(mustPassNode);
+      visitedNodesInOrder = dijkstra(newGrid, startNode, finishNode);
+      nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     } else if (selectedAlgorithm === "A*") {
       [visitedNodesInOrder, nodesInShortestPathOrder] = aStarAlgorithm(
         startNodeRow,
