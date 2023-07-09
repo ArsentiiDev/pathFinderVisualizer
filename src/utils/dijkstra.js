@@ -1,4 +1,3 @@
-const { materials } = require("../constants/constants");
 const { getWeight } = require("./helpers");
 
 class MinHeap {
@@ -68,7 +67,7 @@ class MinHeap {
   }
 }
 
-function dijkstra(grid, startNode, finishNode, mustPassNodes) {
+export function dijkstra(grid, startNode, finishNode, mustPassNodes) {
   const visitedNodesInOrder = [];
   startNode.distance = 0;
 

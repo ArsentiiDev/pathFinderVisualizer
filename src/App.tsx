@@ -194,8 +194,8 @@ export const App = () => {
     let visitedNodesInOrder: any = [];
     let nodesInShortestPathOrder: any = [];
     if (selectedAlgorithm === "Dijkstra") {
-      visitedNodesInOrder = dijkstra(newGrid, startNode, finishNode, [mustPassNode]);
-      nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
+      visitedNodesInOrder = dijkstra(newGrid, startNode, mustPassNode);
+      nodesInShortestPathOrder = getNodesInShortestPathOrder(mustPassNode);
     } else if (selectedAlgorithm === "A*") {
       [visitedNodesInOrder, nodesInShortestPathOrder] = aStarAlgorithm(
         startNodeRow,
