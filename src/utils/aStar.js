@@ -14,7 +14,7 @@ class Node {
     }
   }
   
-export default function aStarAlgorithm(startRow, startCol, endRow, endCol, graph) {
+export function aStarAlgorithm(startRow, startCol, endRow, endCol, graph) {
     const nodes = initializeNodes(graph)
   
     const startNode = nodes[startRow][startCol]

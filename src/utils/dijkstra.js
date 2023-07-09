@@ -126,7 +126,7 @@ function getUnvisitedNeighbors(node, grid) {
   return neighbors.filter((neighbor) => !neighbor.isVisited);
 }
 
-function getNodesInShortestPathOrder(finishNode) {
+export function getNodesInShortestPathOrder(finishNode) {
   const nodesInShortestPathOrder = [];
   let currentNode = finishNode;
 
@@ -137,5 +137,3 @@ function getNodesInShortestPathOrder(finishNode) {
 
   return nodesInShortestPathOrder;
 }
-
-module.exports = { dijkstra, getNodesInShortestPathOrder, Node };

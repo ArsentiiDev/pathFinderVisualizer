@@ -19,7 +19,7 @@ import { dijkstra, getNodesInShortestPathOrder } from "./utils/dijkstra";
 import "./App.css";
 import { Node } from "./interfaces";
 import { motion } from "framer-motion";
-import aStarAlgorithm from "./utils/aStar";
+import {aStarAlgorithm} from "./utils/aStar";
 import { generateMaze } from "./utils/maze";
 import { isStartOrFinishNode } from "./utils/helpers";
 import Grid from "./components/Grid";
