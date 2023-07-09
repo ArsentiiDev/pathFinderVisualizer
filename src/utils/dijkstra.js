@@ -1,3 +1,6 @@
+const { materials } = require("../constants/constants");
+const { getWeight } = require("./helpers");
+
 class MinHeap {
   constructor() {
     this.heap = [];
@@ -65,15 +68,17 @@ class MinHeap {
   }
 }
 
-function dijkstra(grid, startNode, finishNode) {
+function dijkstra(grid, startNode, finishNode, mustPassNodes) {
   const visitedNodesInOrder = [];
   startNode.distance = 0;
 
   const minDistancesHeap = new MinHeap();
-  minDistancesHeap.insert(startNode, startNode.distance)
+  minDistancesHeap.insert(startNode, startNode.distance);
+
+  const mustPassNodesSet = new Set(mustPassNodes);
 
   while (minDistancesHeap.heap.length > 0) {
-    const [node, distance] = minDistancesHeap.remove();
+    const [node, _] = minDistancesHeap.remove();
     if (node.isWall) continue;
     if (node.distance === Infinity) return visitedNodesInOrder;
 
@@ -82,21 +87,30 @@ function dijkstra(grid, startNode, finishNode) {
 
     if (node === finishNode) return visitedNodesInOrder;
 
-    updateUnvisitedNeighbors(node, grid, minDistancesHeap);
+    updateUnvisitedNeighbors(node, grid, minDistancesHeap, mustPassNodesSet);
   }
 
   return visitedNodesInOrder;
 }
 
-function updateUnvisitedNeighbors(node, grid, minDistancesHeap) {
+function updateUnvisitedNeighbors(node, grid, minDistancesHeap, mustPassNodesSet) {
   const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
 
   for (const neighbor of unvisitedNeighbors) {
-    const distance = node.distance + 1;
+    const distance = node.distance + getWeight(neighbor);
     if (distance < neighbor.distance) {
       neighbor.distance = distance;
       neighbor.previousNode = node;
       minDistancesHeap.insert(neighbor, distance);
+    }
+  }
+  
+  for (const mustPassNode of mustPassNodesSet) {
+    const distance = node.distance + getWeight(mustPassNode);
+    if (distance < mustPassNode.distance) {
+      mustPassNode.distance = distance;
+      mustPassNode.previousNode = node;
+      minDistancesHeap.insert(mustPassNode, distance);
     }
   }
 }
@@ -113,7 +127,6 @@ function getUnvisitedNeighbors(node, grid) {
   return neighbors.filter((neighbor) => !neighbor.isVisited);
 }
 
-
 function getNodesInShortestPathOrder(finishNode) {
   const nodesInShortestPathOrder = [];
   let currentNode = finishNode;
@@ -126,4 +139,4 @@ function getNodesInShortestPathOrder(finishNode) {
   return nodesInShortestPathOrder;
 }
 
-module.exports = { dijkstra, getNodesInShortestPathOrder, Node }
+module.exports = { dijkstra, getNodesInShortestPathOrder, Node };

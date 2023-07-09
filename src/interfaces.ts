@@ -6,7 +6,10 @@ export interface Node {
     distance: number;
     isVisited: boolean;
     isWall: boolean;
+    isWater: boolean;
+    isGround: boolean;
     previousNode: Node | null;
-    isPath: boolean; // ADD THIS
-    isVisitedAnimationDone: boolean; // ADD THIS
+    estimatedDistToEnd: number;
+    isPath: boolean;
+    isVisitedAnimationDone: boolean;
   }

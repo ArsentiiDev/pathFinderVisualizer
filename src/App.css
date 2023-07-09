@@ -1,9 +1,25 @@
 .node-finish {
-  background-color: red;
+  background-image: url("/public/end-node.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .node-start {
-  background-color: green;
+  background-image: url("/public/start-node.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.node-ground {
+  background-image: url("/public/ground.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.node-water {
+  background-image: url("/public/water.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .node-visited {
